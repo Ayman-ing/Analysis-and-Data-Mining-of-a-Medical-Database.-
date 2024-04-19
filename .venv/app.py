@@ -208,46 +208,49 @@ if uploaded_file is not None:
             st.table(output)
 
         if not selected_option=="":
+            st.session_state.method_chose = True
             indices = list(range(1, len(st.session_state.valeurs_propres_choisis) + 1))
             xvar = st.selectbox('Select x-axis:', indices)
             yvar = st.selectbox('Select y-axis:', indices)
             st.write(px.scatter(st.session_state.Y_df, x=xvar-1, y=yvar-1))
-    if(st.button("calculer la saturation des varaibels")) or st.session_state.saturation_varaibles_already_calculated:
-        st.session_state.variable_loadings = st.session_state.acp_normé.components_.T * np.sqrt(st.session_state.acp_normé.explained_variance_)
-        st.session_state.saturation_varaibles_already_calculated = True
-        st.write("Variable Loadings:")
-        st.write(pd.DataFrame(st.session_state.variable_loadings, columns=[f"PC{i + 1}" for i in range(len(st.session_state.normalized_df.columns))],
-                              index=st.session_state.normalized_df.columns))
 
-        st.session_state.variable_symbols = [f"I{i + 1}" for i in range(len(st.session_state.normalized_df.columns))]
+    if st.session_state.method_chose:
+        if(st.button("calculer la saturation des varaibels")) or st.session_state.saturation_varaibles_already_calculated:
+            st.session_state.variable_saturation = st.session_state.acp_normé.components_.T * np.sqrt(st.session_state.acp_normé.explained_variance_)
+            st.session_state.saturation_varaibles_already_calculated = True
+            st.write("Variable Loadings:")
+            st.write(pd.DataFrame(st.session_state.variable_saturation, columns=[f"PC{i + 1}" for i in range(len(st.session_state.normalized_df.columns))],
+                                  index=st.session_state.normalized_df.columns))
 
-        # Creating a key for the symbols
-        symbol_key = {symbol: var for symbol, var in zip(st.session_state.variable_symbols, st.session_state.normalized_df.columns)}
-        # Plotting the correlation circle
-        fig, ax = plt.subplots()
-        ax.set_aspect('equal', 'box')
-        ax.add_artist(plt.Circle((0, 0), 1, color='blue', fill=False))
-        indices = list(range(1, len(st.session_state.valeurs_propres_choisis) + 1))
-        xvar = st.selectbox('Select x-axis: CP', indices)
-        yvar = st.selectbox('Select y-axis: CP', indices)
+            st.session_state.variable_symbols = [f"I{i + 1}" for i in range(len(st.session_state.normalized_df.columns))]
 
-        for i,symbol in enumerate(st.session_state.variable_symbols):
-            ax.plot([0, st.session_state.variable_loadings[i, xvar-1]], [0, st.session_state.variable_loadings[i, yvar-1]], color='k',linewidth=0.5)
-            ax.text(st.session_state.variable_loadings[i, xvar-1], st.session_state.variable_loadings[i, yvar-1], symbol, fontsize='8', ha='right',
-                    va='bottom')
+            # Creating a key for the symbols
+            symbol_key = {symbol: var for symbol, var in zip(st.session_state.variable_symbols, st.session_state.normalized_df.columns)}
+            # Plotting the correlation circle
+            fig, ax = plt.subplots()
+            ax.set_aspect('equal', 'box')
+            ax.add_artist(plt.Circle((0, 0), 1, color='blue', fill=False))
+            indices = list(range(1, len(st.session_state.valeurs_propres_choisis) + 1))
+            xvar = st.selectbox('Select x-axis: CP', indices)
+            yvar = st.selectbox('Select y-axis: CP', indices)
 
-        plt.xlim(-1, 1)
-        plt.ylim(-1, 1)
-        plt.xlabel(f"CP{xvar}")
-        plt.ylabel(f"CP{yvar}")
-        plt.title('Correlation Circle')
-        plt.grid()
+            for i,symbol in enumerate(st.session_state.variable_symbols):
+                ax.plot([0, st.session_state.variable_saturation[i, xvar-1]], [0, st.session_state.variable_saturation[i, yvar-1]], color='k',linewidth=0.5)
+                ax.text(st.session_state.variable_saturation[i, xvar-1], st.session_state.variable_saturation[i, yvar-1], symbol, fontsize='8', ha='right',
+                        va='bottom')
 
-        # Displaying the plot in Streamlit
-        st.pyplot(fig)
-        st.write("Variable Symbols Key:")
-        for symbol, var in symbol_key.items():
-            st.write(f"{symbol}: {var}")
+            plt.xlim(-1, 1)
+            plt.ylim(-1, 1)
+            plt.xlabel(f"CP{xvar}")
+            plt.ylabel(f"CP{yvar}")
+            plt.title('Correlation Circle')
+            plt.grid()
+
+            # Displaying the plot in Streamlit
+            st.pyplot(fig)
+            st.write("Variable Symbols Key:")
+            for symbol, var in symbol_key.items():
+                st.write(f"{symbol}: {var}")
 
         
 
@@ -258,6 +261,7 @@ else:
     st.session_state.showing_correlation = False
     st.session_state.already_ACP_Applied= False
     st.session_state.saturation_varaibles_already_calculated=False
+    st.session_state.method_chose = False
 
     # iris_scaled = StandardScaler().fit_transform(dataSet.drop('SMOKING', axis=1))
     # iris_pca = PCA()
