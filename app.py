@@ -251,7 +251,7 @@ def applyingTheKMeans():
     st.write("chaque observation appartient au cluster N°:", etiquet_target)
     st.write("nombre d'observations dans chaque cluster \n", etiquet_target.value_counts())
     inertie_totale = model_kmeans.inertia_
-    st.title("Inertie totale: {}".format(inertie_totale))
+    st.title("K-means Inertie totale: {}".format(inertie_totale))
     indices = list(range(1, len(st.session_state.valeurs_propres_choisis) + 1))
     xvar = st.selectbox('Select first axis: CP', indices)
     yvar = st.selectbox('Select second axis: CP', indices)
