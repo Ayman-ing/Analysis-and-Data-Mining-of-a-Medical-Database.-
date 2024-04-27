@@ -98,9 +98,8 @@ def normalizingTheDataSet():
 def manipulatingTheDataSet():
     st.subheader('Normalized Dataset')
     st.write(st.session_state.normalized_df)
-    width = st.slider('Width', min_value=8, max_value=20, value=10)
-    height = st.slider('Height', min_value=8, max_value=20, value=8)
-    fig, ax = plt.subplots(figsize=(width, height))
+
+    fig, ax = plt.subplots(figsize=(12, 12))
     st.session_state.corrélation_df = st.session_state.normalized_df.corr()  # les données doit etre centré reduite pour faire la corrélation
     sb.heatmap(st.session_state.corrélation_df, annot=True, ax=ax)
     st.pyplot(fig)
