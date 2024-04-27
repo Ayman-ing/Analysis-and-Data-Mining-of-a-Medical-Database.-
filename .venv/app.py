@@ -277,7 +277,7 @@ def applyingTheHAC(xvar,yvar):
     fig, ax = plt.subplots()
     # Create the dendrogram plot
     plt.title('CAH')
-    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top', color_threshold=1)
+    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top', color_threshold=2)
     ax.scatter(st.session_state.dataSet.iloc[:, xvar - 1], st.session_state.dataSet.iloc[:, yvar - 1])
     ax.set_title('Hierarchical Agglomerative Clustering')
     ax.set_xlabel(f'Feature {xvar}')
@@ -351,7 +351,7 @@ if uploaded_file is not None:
             variablesLoading()
             st.session_state.corolation_cercle_applied = True
     if st.session_state.corolation_cercle_applied :
-        if (st.button("calculer k means")) or st.session_state.kmeans_already_applied:
+        if (st.button("calculer k meanssssssss")) or st.session_state.kmeans_already_applied:
             xvar,yvar=applyingTheKMeans()
             applyingTheHAC(xvar,yvar)
 
