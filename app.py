@@ -98,9 +98,8 @@ def normalizingTheDataSet():
 def manipulatingTheDataSet():
     st.subheader('Normalized Dataset')
     st.write(st.session_state.normalized_df)
-    width = st.slider('Width', min_value=8, max_value=20, value=10)
-    height = st.slider('Height', min_value=8, max_value=20, value=8)
-    fig, ax = plt.subplots(figsize=(width, height))
+
+    fig, ax = plt.subplots(figsize=(12, 12))
     st.session_state.corrélation_df = st.session_state.normalized_df.corr()  # les données doit etre centré reduite pour faire la corrélation
     sb.heatmap(st.session_state.corrélation_df, annot=True, ax=ax)
     st.pyplot(fig)
@@ -272,12 +271,13 @@ def applyingTheKMeans():
 
 
 def applyingTheHAC(xvar,yvar):
-    d = linkage(st.session_state.Y_df, method='single')
+    d = linkage(st.session_state.Y_df, method='ward')
 
     fig, ax = plt.subplots()
+
     # Create the dendrogram plot
     plt.title('CAH')
-    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top', color_threshold=2)
+    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top',color_threshold=25)
     ax.scatter(st.session_state.dataSet.iloc[:, xvar - 1], st.session_state.dataSet.iloc[:, yvar - 1])
     ax.set_title('Hierarchical Agglomerative Clustering')
     ax.set_xlabel(f'Feature {xvar}')
@@ -351,7 +351,7 @@ if uploaded_file is not None:
             variablesLoading()
             st.session_state.corolation_cercle_applied = True
     if st.session_state.corolation_cercle_applied :
-        if (st.button("calculer k meanssssssss")) or st.session_state.kmeans_already_applied:
+        if (st.button("calculer k means")) or st.session_state.kmeans_already_applied:
             xvar,yvar=applyingTheKMeans()
             applyingTheHAC(xvar,yvar)
 
