@@ -277,13 +277,13 @@ def applyingTheKMeans():
 
 
 def applyingTheHAC(xvar,yvar):
-    d = linkage(st.session_state.Y_df, method='ward')
+    d = linkage(st.session_state.Y_df, method='single')
 
     fig, ax = plt.subplots()
 
     # Create the dendrogram plot
     plt.title('CAH')
-    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top',color_threshold=25)
+    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top',color_threshold=4)
     ax.scatter(st.session_state.dataSet.iloc[:, xvar - 1], st.session_state.dataSet.iloc[:, yvar - 1])
     ax.set_title('Hierarchical Agglomerative Clustering')
     ax.set_xlabel(f'Feature {xvar}')
