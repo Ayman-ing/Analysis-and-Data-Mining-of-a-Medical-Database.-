@@ -295,7 +295,7 @@ def applyingTheHAC(xvar,yvar):
 
     inertie_totale = sum(np.sum((st.session_state.Y_df[labels == i] - cluster_centers[i])**2) for i in range(2))
 
-    st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale:.2f}')
+    st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale}')
 
 
 if uploaded_file is not None:
