@@ -199,7 +199,7 @@ def variablesLoading():
     st.session_state.variable_saturation = st.session_state.acp_normé.components_.T * np.sqrt(
         st.session_state.acp_normé.explained_variance_)
     st.session_state.saturation_varaibles_already_calculated = True
-    st.write("Variable Loadings:")
+    st.write("Saturation des variables:")
     st.write(pd.DataFrame(st.session_state.variable_saturation,
                           columns=[f"PC{i + 1}" for i in range(len(st.session_state.normalized_df.columns))],
                           index=st.session_state.normalized_df.columns))
@@ -228,7 +228,7 @@ def variablesLoading():
     plt.ylim(-1, 1)
     plt.xlabel(f"CP{xvar}")
     plt.ylabel(f"CP{yvar}")
-    plt.title('Correlation Cercle')
+    plt.title('Cercle de corrélation')
     plt.grid()
 
     # Displaying the plot in Streamlit
