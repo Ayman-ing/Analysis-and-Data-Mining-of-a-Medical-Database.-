@@ -242,12 +242,14 @@ def applyingTheKMeans():
     model_kmeans = KMeans(n_clusters=2)
     st.session_state.k = model_kmeans.fit_transform(st.session_state.Y_df)
     st.session_state.k = pd.DataFrame(st.session_state.k)
+    st.write("Résultats des clusters :")
     st.write(st.session_state.k)
     st.session_state.centroides = model_kmeans.cluster_centers_
+    st.write("Centroides des clusters :")
     st.write(st.session_state.centroides)
     etiquet_target = pd.DataFrame(model_kmeans.labels_)
-    st.write("les etiuettes de sorties sont ", etiquet_target)
-    st.write("le nombre d'apparition de chaque target est \n", etiquet_target.value_counts())
+    st.write("chaque observation appartient au cluster N°:", etiquet_target)
+    st.write("nombre d'observations dans chaque cluster \n", etiquet_target.value_counts())
     indices = list(range(1, len(st.session_state.valeurs_propres_choisis) + 1))
     xvar = st.selectbox('Select first axis: CP', indices)
     yvar = st.selectbox('Select second axis: CP', indices)
@@ -267,6 +269,9 @@ def applyingTheKMeans():
 
     # Show the plot
     st.pyplot(fig)
+    inertie_totale = model_kmeans.inertia_
+    st.write("Inertie totale:")
+    st.write(inertie_totale)
     return xvar,yvar
 
 
