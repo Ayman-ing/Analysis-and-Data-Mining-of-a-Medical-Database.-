@@ -135,7 +135,7 @@ def applyingTheACP():
             'Pourcentage': st.session_state.pourcentages[i],
             'Pourcentage Cumulé': st.session_state.pourcentage_cumulé[i]
         })
-    st.write("## Composantes choisis")
+
     st.table(st.session_state.données)
     st.title("Graphique des valeurs propres")
 
