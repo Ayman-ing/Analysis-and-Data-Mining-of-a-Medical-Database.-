@@ -277,19 +277,24 @@ def applyingTheKMeans():
 
 
 def applyingTheHAC(xvar,yvar):
-    d = linkage(st.session_state.Y_df, method='single')
+    d = linkage(st.session_state.Y_df, method='ward')
 
     fig, ax = plt.subplots()
 
     # Create the dendrogram plot
+    labels = fcluster(d, 2, criterion='maxclust')  # Choisir le nombre de clusters
+
     plt.title('CAH')
-    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top',color_threshold=4)
+    dendrogram(d, labels=st.session_state.dataSet.index, orientation='top',color_threshold=25)
     ax.scatter(st.session_state.dataSet.iloc[:, xvar - 1], st.session_state.dataSet.iloc[:, yvar - 1])
     ax.set_title('Hierarchical Agglomerative Clustering')
     ax.set_xlabel(f'Feature {xvar}')
     ax.set_ylabel(f'Feature {yvar}')
     st.pyplot(fig)
-    inertie_totale = d[-1, 2]
+    cluster_centers = np.array([st.session_state.Y_df[labels == i].mean(axis=0) for i in np.unique(labels)])
+
+    inertie_totale = sum(np.sum((st.session_state.Y_df[labels == i] - cluster_centers[i])**2) for i in np.unique(labels))
+
     st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale:.2f}')
 
 
