@@ -293,7 +293,7 @@ def applyingTheHAC(xvar,yvar):
     st.pyplot(fig)
     cluster_centers = np.array([st.session_state.Y_df[labels == i].mean(axis=0) for i in np.unique(labels)])
 
-    inertie_totale = sum(np.sum((st.session_state.Y_df[labels == i] - cluster_centers[i])**2) for i in np.unique(labels))
+    inertie_totale = sum(np.sum((st.session_state.Y_df[labels == i] - cluster_centers[i])**2) for i in range(2))
 
     st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale:.2f}')
 
