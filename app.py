@@ -96,7 +96,7 @@ def normalizingTheDataSet():
 
 
 def manipulatingTheDataSet():
-    st.subheader('Normalized Dataset')
+    st.subheader('base normalisée')
     st.write(st.session_state.normalized_df)
 
     fig, ax = plt.subplots(figsize=(12, 12))
