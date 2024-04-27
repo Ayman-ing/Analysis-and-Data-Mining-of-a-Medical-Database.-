@@ -276,7 +276,7 @@ def applyingTheKMeans():
 
 
 def applyingTheHAC(xvar,yvar):
-    d = linkage(st.session_state.Y_df, method='ward')
+    d = linkage(st.session_state.Y_df, method='single')
 
     fig, ax = plt.subplots()
 
