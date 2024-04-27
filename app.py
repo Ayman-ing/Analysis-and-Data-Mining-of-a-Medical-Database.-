@@ -137,7 +137,7 @@ def applyingTheACP():
         })
 
     st.table(st.session_state.données)
-    st.title("Graphique des valeurs propres")
+    st.title("Histogramme des valeurs propres")
 
 
 def showingTheGraphics():
