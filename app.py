@@ -270,8 +270,8 @@ def applyingTheKMeans():
     # Show the plot
     st.pyplot(fig)
     inertie_totale = model_kmeans.inertia_
-    st.write("Inertie totale:")
-    st.write(inertie_totale)
+    st.title("Inertie totale: {}".format(inertie_totale))
+
     return xvar,yvar
 
 
