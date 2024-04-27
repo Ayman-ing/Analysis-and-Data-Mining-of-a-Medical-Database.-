@@ -289,7 +289,7 @@ def applyingTheHAC(xvar,yvar):
     ax.set_ylabel(f'Feature {yvar}')
     st.pyplot(fig)
     inertie_totale = d[-1, 2]
-    plt.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale:.2f}')
+    st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertie_totale:.2f}')
 
 
 if uploaded_file is not None:
