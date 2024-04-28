@@ -11,6 +11,8 @@ import seaborn as sb
 from sklearn.cluster import KMeans
 from scipy.cluster.hierarchy import dendrogram , linkage,fcluster
 
+
+#C’est une fonction utiliser pour simuler le chargement lorsqu’ on appuie sur un bouton
 def progressBar():
     progress_bar = st.progress(0)
     # Simulate progress
@@ -21,75 +23,91 @@ st.title('Analyse et Fouille de données d’une base de données médicales')
 st.title("Dataset Importer")
 st.session_state.is_normalized = False
 
+
+#importation du fichier
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-#s' il y a un fichier importer on le traite
+
 def dataSetInformations():
+    #ajouter un subheader
     st.subheader('Raw data')
 
-    # lire le fichier et l'afficher
     dataSet = pd.read_csv(uploaded_file)
     st.write(dataSet)
+    #enregistrement  du dataset au session pour que on puisse le utiliser à chaque reload du code
     if "dataSet" not in st.session_state:
         st.session_state.dataSet = dataSet
 
     st.write("### informations")
+
+    #affectation du nombre d'observations et du caractéristiques
     numberOfRows, numberOfColumns = st.session_state.dataSet.shape
+    #mise en page de deux colones
     col1, col2 = st.columns(2)
     with col1:
+        #affichage
         st.write("### Nombre d'observations :")
         st.markdown(f"<p style='color: green;font-weight: bold; font-size: 24px;'>{numberOfRows}</p>",
                     unsafe_allow_html=True)
 
     with col2:
+        # affichage
         st.write("### Nombre de caractéristiques :")
         st.markdown(f"<p style='color: green; font-weight: bold; font-size: 24px;'>{numberOfColumns}</p>",
                     unsafe_allow_html=True)
-        # Vérifier s'il y a des valeurs manquantes
 
+
+
+#remplacement des valuers NaN
 def replaceNoneValues():
+    #simulation d'un bar de progress
     progressBar()
     for column in st.session_state.dataSet.columns:
-
+        #on fait le traitement uniquement au colones numériques
         if (st.session_state.dataSet[column].dtype == 'int64' or st.session_state.dataSet[column].dtype == 'float64'):
+            #on les remplace
             st.session_state.dataSet[column] = st.session_state.dataSet[column].fillna(st.session_state.dataSet[column].mean())
     time.sleep(0.1)
 
     st.write("remplacement est terminé")
     st.write(st.session_state.dataSet)
 
+
+#codage des colonnes non-numériques
 def codingTheValues():
     progressBar()
-
     this_year = date.datetime.now().year
     for column in st.session_state.dataSet.columns:
+        # si les colones sont des colones de date(n'est pas le cas dans notre exemple dataset mais il faut le traiter pour qu'il étre un code général)
         if st.session_state.dataSet[column].astype(str).str.match(r'^\d{2}-\d{2}-\d{4}$').any():
             st.session_state.dataSet[column] = this_year - st.session_state.dataSet[column].str[-4:].astype(int)
             continue
-
+        #si il sont des chaines de caractéres
         if not (st.session_state.dataSet[column].dtype == 'int64' or st.session_state.dataSet[
             column].dtype == 'float64'):
             my_dict = {}
             index = 0
+            #on applique un index à chaque chaine
             for element in st.session_state.dataSet[column]:
                 if element not in my_dict:
                     my_dict[element] = index
                     index += 1
-
+            # on les remplace par son index
             for key, value in my_dict.items():
                 st.session_state.dataSet[column] = st.session_state.dataSet[column].replace(key, value)
     st.write("codage est terminé")
     st.write(st.session_state.dataSet)
 
-
+#normalisation du dataSet
 def normalizingTheDataSet():
     progressBar()
+    #on initialise une instance StandardScaler
     scaler = StandardScaler()
+    #on utilise la fonction fit_transform pour avoir la matrice centré reduite
     normalized_data = scaler.fit_transform(st.session_state.dataSet)
 
-    # Create a DataFrame from the normalized data
+    #on le transforme on une dataFrame (st.session est utiliser pour enregistrer la dataset car streamlit reload the code à chaque interaction)
     st.session_state.normalized_df = pd.DataFrame(normalized_data, columns=st.session_state.dataSet.columns)
-    means = st.session_state.normalized_df.mean().round(2)
-    stds = st.session_state.normalized_df.std().round(2)
+
     st.session_state.is_normalized = True
     st.session_state.already_normalized = True
     st.write("### la base a été normalisée")
@@ -302,7 +320,7 @@ def applyingTheHAC(xvar,yvar):
 
     st.title(f'Hierarchical Agglomerative Clustering - inertie totale: {inertia}')
 
-
+#s' il y a un fichier importer on le traite
 if uploaded_file is not None:
     dataSetInformations()
     if st.session_state.dataSet.isnull().values.any():
@@ -379,7 +397,7 @@ if uploaded_file is not None:
 
         
 
-
+#si non on initialise les variables booléan à False
 else:
     st.session_state.already_normalized=False
     st.session_state.acp_applied=False
@@ -389,10 +407,4 @@ else:
     st.session_state.method_chose = False
     st.session_state.corolation_cercle_applied = False
     st.session_state.kmeans_already_applied = False
-#    plt.xlabel('Sample Index')
-#    plt.ylabel('Distance')
- #       plt.xticks(rotation=90)
-  #      plt.tight_layout()
-         # Show the dendrogram plot in Streamlit
-   #     st.pyplot(fig)
 
