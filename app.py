@@ -260,7 +260,7 @@ def applyingTheKMeans():
     ax.scatter(st.session_state.Y_df.iloc[:, xvar - 1], st.session_state.Y_df.iloc[:, yvar - 1],
                c=model_kmeans.labels_.astype(float), s=20,
                alpha=0.5)  # c is colors
-    ax.set_title('Hierarchical Agglomerative Clustering')
+    ax.set_title('K-means')
     # Scatter plot for centroids
     ax.scatter(st.session_state.centroides[:, xvar - 1], st.session_state.centroides[:, yvar - 1], c='red', s=50)
 
