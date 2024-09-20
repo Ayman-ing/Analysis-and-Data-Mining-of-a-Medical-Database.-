@@ -6,5 +6,18 @@ https://projectafd.streamlit.app/
 (you can use the file named cancer_de_poumon as an exemple)
 
 
-#
+ Project Objectives and Implementation Protocol
+
+The objective of this project is to apply data analysis and mining methods to help doctors in their decision-making process. A medical database (`cancer_des_poumons.csv`) is provided to detect anomalies.
+
+# Project Description
+
+## 3.1 Data Preparation
+This phase involves pre-processing and transforming raw data for further analysis. Steps include handling missing values, encoding, normalization, and correlation analysis.
 ![image](https://github.com/user-attachments/assets/e4688163-5b8f-4d7a-9b67-3e24b39fcb05)
+## 3.2 Feature Extraction
+Principal Component Analysis (PCA) will be used to extract new factors and reduce dimensionality for better data representation.
+
+## 3.3 Data Mining
+Clustering methods, such as K-means and Hierarchical Clustering, will be applied to distinguish between healthy and sick patients.
+
