@@ -18,14 +18,15 @@ The objective of this project is to apply data analysis and mining methods to he
 
 
 This phase involves pre-processing and transforming raw data for further analysis. Steps include handling missing values, encoding, normalization, and correlation analysis.
-encoding
+
+###handling missing values and encoding
 ![image](https://github.com/user-attachments/assets/abd581af-378c-4d04-a50d-93e9475a94eb)
 
-normalization
+###normalization
 
 ![image](https://github.com/user-attachments/assets/d446df05-c9ec-4063-920a-73642e730fe8)
 
-correlation analysis
+###correlation analysis
 
 ![image](https://github.com/user-attachments/assets/24a2d15f-1e00-4708-b0c1-7d9544a23419)
 
