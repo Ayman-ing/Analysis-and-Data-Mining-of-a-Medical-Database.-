@@ -13,8 +13,10 @@ The objective of this project is to apply data analysis and mining methods to he
 # Project Description
 
 ## 3.1 Data Preparation
-This phase involves pre-processing and transforming raw data for further analysis. Steps include handling missing values, encoding, normalization, and correlation analysis.
 ![image](https://github.com/user-attachments/assets/e4688163-5b8f-4d7a-9b67-3e24b39fcb05)
+This phase involves pre-processing and transforming raw data for further analysis. Steps include handling missing values, encoding, normalization, and correlation analysis.
+![premiere-phase-remplacement](https://github.com/user-attachments/assets/3881067f-ae04-4ba9-b0df-7e418775bd9f)
+
 ## 3.2 Feature Extraction
 Principal Component Analysis (PCA) will be used to extract new factors and reduce dimensionality for better data representation.
 
