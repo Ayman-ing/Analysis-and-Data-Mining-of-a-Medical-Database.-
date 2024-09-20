@@ -58,5 +58,14 @@ Principal Component Analysis (PCA) will be used to extract new factors and reduc
 
 
 ## 3.3 Data Mining
-Clustering methods, such as K-means and Hierarchical Clustering, will be applied to distinguish between healthy and sick patients.
+Clustering methods, such as K-means and Hierarchical Ascendant Classification (HAC), will be applied to distinguish between healthy and sick patients.
+
+
+### K-means
+
+![image](https://github.com/user-attachments/assets/767223f3-873c-4191-8efb-5f3bf5542f68)
+
+### Hierarchical Ascendant Classification (HAC)
+
+![image](https://github.com/user-attachments/assets/388f51c7-a48f-49f1-aaa4-ce2803db4078)
 
