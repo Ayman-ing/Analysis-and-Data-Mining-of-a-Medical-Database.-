@@ -73,6 +73,7 @@ Clustering methods, such as K-means and Hierarchical Ascendant Classification (H
 
 # Setup
 pip install -r requirements.txt
+
 streamlit run app.py 
 
 
