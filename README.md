@@ -1,5 +1,13 @@
 # Analysis and Data Mining of a Medical Database.
-My university project focuses on extracting valuable insights from a medical database using two powerful techniques: Principal Component Analysis (PCA) and K-means clustering. PCA helps us identify patterns and reduce the dimensionality of the data, making it easier to understand and visualize complex relationships among medical variables. K-means clustering further enhances our analysis by grouping similar medical records together, allowing us to uncover meaningful clusters or subgroups within the patient population. By applying these techniques, we aim to improve medical decision-making processes and provide valuable insights for healthcare professionals
+
+Memory updated
+Here's an updated version of your project description, now including Hierarchical Ascendant Classification (HAC):
+
+My university project focuses on extracting valuable insights from a medical database using three powerful techniques: Principal Component Analysis (PCA), K-means clustering, and Hierarchical Ascendant Classification (HAC).
+
+PCA helps us identify patterns and reduce the dimensionality of the data, making it easier to understand and visualize complex relationships among medical variables.
+K-means clustering further enhances our analysis by grouping similar medical records together, allowing us to uncover meaningful clusters or subgroups within the patient population.
+HAC complements the clustering approach by providing a hierarchical perspective, offering a more nuanced understanding of how patient records can be grouped into clusters based on their similarities. This method organizes data into a tree-like structure, making it easier to visualize different levels of similarity among patients.
 ## TRY IT BY YOURSEL
 
 https://projectafd.streamlit.app/
