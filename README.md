@@ -69,3 +69,11 @@ Clustering methods, such as K-means and Hierarchical Ascendant Classification (H
 
 ![image](https://github.com/user-attachments/assets/388f51c7-a48f-49f1-aaa4-ce2803db4078)
 
+
+
+# Setup
+pip install -r requirements.txt
+streamlit run app.py 
+
+
+
