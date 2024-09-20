@@ -1,7 +1,6 @@
 # Analysis and Data Mining of a Medical Database.
 
-Memory updated
-Here's an updated version of your project description, now including Hierarchical Ascendant Classification (HAC):
+
 
 My university project focuses on extracting valuable insights from a medical database using three powerful techniques: Principal Component Analysis (PCA), K-means clustering, and Hierarchical Ascendant Classification (HAC).
 
