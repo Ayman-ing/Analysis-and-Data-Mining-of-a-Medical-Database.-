@@ -44,6 +44,19 @@ This phase involves pre-processing and transforming raw data for further analysi
 ## 3.2 Feature Extraction
 Principal Component Analysis (PCA) will be used to extract new factors and reduce dimensionality for better data representation.
 
+
+![image](https://github.com/user-attachments/assets/e577e40f-7e61-4015-8f4a-b7918303fd35)
+
+
+![image](https://github.com/user-attachments/assets/f54e93e6-a1c0-48b2-bb3b-b9e7bf386549)
+
+
+### correlation circle
+![image](https://github.com/user-attachments/assets/93e4af13-a285-478f-8417-dc164198aa0b)
+
+
+
+
 ## 3.3 Data Mining
 Clustering methods, such as K-means and Hierarchical Clustering, will be applied to distinguish between healthy and sick patients.
 
