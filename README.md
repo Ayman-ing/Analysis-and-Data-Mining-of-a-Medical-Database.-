@@ -4,3 +4,7 @@ My university project focuses on extracting valuable insights from a medical dat
 
 https://projectafd.streamlit.app/
 (you can use the file named cancer_de_poumon as an exemple)
+
+
+#
+![image](https://github.com/user-attachments/assets/e4688163-5b8f-4d7a-9b67-3e24b39fcb05)
